@@ -1,8 +1,9 @@
 import os
 import dotenv
 
-dot_env_path = dotenv.find_dotenv(raise_error_if_not_found=True)
+dot_env_path = dotenv.find_dotenv()
 dotenv.load_dotenv(dot_env_path)
+
 REFRESH_URI = '0023b4611f183619016bad427adfc667'
 guestoo = {
     'LOGIN_USER_NAME': os.getenv('LOGIN_USER_NAME'),
