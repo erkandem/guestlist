@@ -85,7 +85,7 @@ def index():
 @app.route('/' + REFRESH_URI, methods=['POST'])
 def refresh_login():
     status = login()
-    return status
+    return ' ', status
 
 
 if __name__ == "__main__":
