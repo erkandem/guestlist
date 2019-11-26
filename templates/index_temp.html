@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Gäschtelischte</title>
 </head>
-<body>
+<body style="text-align: center;">
 <div id="entrypoint">
     <div>
         <h2>Gäschtelischte</h2>
@@ -20,17 +20,14 @@
         </div>
     </div>
     <div>
-        <table style="margin: 50px 10px;">
-            <tbody>
+        <div style="margin: 50px 10px;">
             {% for guest in guests %}
-            <tr>
-                <td> {{ guest.firstName }} {{ guest.lastName }}</td>
-            </tr>
+            <div style="margin: 10px 0px;">{{ guest.firstName }} {{ guest.lastName }}</div>
             {% endfor %}
-            </tbody>
-        </table>
+        </div>
     </div>
-    <div style="margin: 20px 10px; font-size: small;"><code>c==3</code></div>
+</div>
+<div style="margin: 20px 10px; font-size: small;"><code>c==3</code></div>
 </div>
 </body>
 </html>
