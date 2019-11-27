@@ -90,7 +90,7 @@ def get_event_specific_guests():
     url = guestoo['DETAILED_GUESTS_URL']
     body = {
         'event': {
-            '"id': guestoo['EVENT_ID'],
+            'id': guestoo['EVENT_ID'],
             'status': ['INVITED', 'OPEN', 'DECLINED', 'CONFIRMED', 'APPEARED']
         }
     }
