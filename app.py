@@ -52,22 +52,61 @@ def app_factory():
     return local_app
 
 
-def get_cleaned_users():
-    header = {
-        "accept": "application/json",
+def get_guests():
+    headers = {
+        'accept': 'application/json',
         **guestoo['auth_header']
     }
-    response = requests.get(guestoo['GUESTS_URL'], headers=header)
+    url = guestoo['GUESTS_URL']
+    response = requests.get(url, headers=headers)
     guests = {
-        "firstName": "Someting",
-        "lastName":  "Wong",
+        'firstName': 'Someting',
+        'lastName':  'Wong',
     }
     if response.status_code == 200:
         guests_data = response.json()
         if len(guests_data) > 0:
             guests = [{
-                "firstName": elm["firstName"],
-                "lastName":  elm["lastName"],
+                'firstName': elm['firstName'],
+                'lastName':  elm['lastName']
+            } for elm in guests_data]
+    return guests
+
+
+def evaluate_status2led(elm):
+    if elm['events'][0]['status'] == 'CONFIRMED':
+        status = 'led led-green'
+    else:
+        status = 'led led-yellow'
+    return status
+
+
+def get_event_specific_guests():
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        **guestoo['auth_header']
+    }
+    url = guestoo['DETAILED_GUESTS_URL']
+    body = {
+        'event': {
+            '"id': guestoo['EVENT_ID'],
+            'status': ['INVITED', 'OPEN', 'DECLINED', 'CONFIRMED', 'APPEARED']
+        }
+    }
+    response = requests.post(url, json=body, headers=headers)
+    guests = {
+        'firstName': 'Someting',
+        'lastName':  'Wong',
+        'status': 'led led-red'
+    }
+    if response.status_code == 200:
+        guests_data = response.json()
+        if len(guests_data) > 0:
+            guests = [{
+                'firstName': elm['firstName'],
+                'lastName':  elm['lastName'],
+                'status': evaluate_status2led(elm)
             } for elm in guests_data]
     return guests
 
