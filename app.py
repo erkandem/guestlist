@@ -3,7 +3,7 @@ import base64
 import requests
 import flask
 from config import guestoo, REFRESH_URI
-import multiprocessing
+import threading
 import urllib
 from logmod import app_logger
 import json
@@ -40,9 +40,9 @@ def login():
 
 def start_cron_process():
     from cron import cron_main
-    p = multiprocessing.Process(target=cron_main)
+    p = threading.Thread(target=cron_main)
     p.start()
-    app_logger.info(json.dumps({'msg': 'started cron'}))
+    app_logger.info(json.dumps({'msg': 'started cron thread'}))
 
 
 def app_factory():
