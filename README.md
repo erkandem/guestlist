@@ -16,4 +16,8 @@ LOGIN_USER_NAME=
 LOGIN_SECRET=
 ```
 
+and finally the event-id UUID
+```
+EVENT_ID=
+```
 
