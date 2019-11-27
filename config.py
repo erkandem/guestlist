@@ -10,5 +10,6 @@ guestoo = {
     'LOGIN_SECRET': os.getenv('LOGIN_SECRET'),
     'TOKEN_URL': "https://app.guestoo.de/auth/oauth/token",
     'GUESTS_URL': "https://app.guestoo.de/rest/guests",
-    'TOKEN': ''
+    'DETAILED_GUESTS_URL': 'https://app.guestoo.de/rest/guests/search/withDetails',
+    'EVENT_ID': os.getenv('EVENT_ID'),
 }
