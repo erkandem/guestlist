@@ -1,10 +1,10 @@
-import schedule
+from datetime import datetime as dt
+import json
 import time
 import requests
+import schedule
 from config import REFRESH_URI
-from datetime import datetime as dt
 from logmod import app_logger
-import json
 
 
 def job():
