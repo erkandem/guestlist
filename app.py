@@ -1,12 +1,11 @@
-import dotenv
 import base64
-import requests
-import flask
-from config import guestoo, REFRESH_URI
+import json
 import threading
 import urllib
+import flask
+import requests
 from logmod import app_logger
-import json
+from config import guestoo, REFRESH_URI
 
 
 def tob64(to_encode):
@@ -38,7 +37,7 @@ def login():
     return 500
 
 
-def start_cron_process():
+def start_cron_thread():
     from cron import cron_main
     p = threading.Thread(target=cron_main)
     p.start()
@@ -46,11 +45,11 @@ def start_cron_process():
 
 
 def app_factory():
-    app = flask.Flask("Gäschtelischte")
-    app.guestoo = guestoo
+    local_app = flask.Flask("Gäschtelischte")
+    local_app.guestoo = guestoo
     login()
-    start_cron_process()
-    return app
+    start_cron_thread()
+    return local_app
 
 
 def get_cleaned_users():
@@ -77,12 +76,12 @@ app = app_factory()
 
 
 @app.route('/', methods=['GET'])
-def index():
-    guests = get_cleaned_users()
+def index_route():
+    guests = get_event_specific_guests()
     return flask.render_template('index_temp.html', guests=guests)
 
 
-@app.route('/' + REFRESH_URI, methods=['POST'])
+@app.route(f'/{REFRESH_URI}', methods=['POST'])
 def refresh_login():
     status = login()
     return ' ', status
