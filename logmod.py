@@ -1,7 +1,9 @@
-import logging
 from datetime import datetime as dt
-import pathlib
+import logging
 import os
+import pathlib
+
+
 ROOT_APP_FOLDER = pathlib.Path(os.path.abspath(__file__)).parent
 
 
@@ -11,6 +13,8 @@ FORMAT_LOG_CONSOLE = [
     '%(funcName)s',
     '%(message)s'
 ]
+
+
 FORMAT_LOG_FILE = [
     '{"dt": ' + '"%(asctime)s"',
     '"fn": ' + '"%(filename)s"',
