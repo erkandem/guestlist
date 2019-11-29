@@ -75,21 +75,27 @@ Something like: `f3786f78-f895-41e6-090c7-5a02518b661f`
 $ docker build -t guestlist:alpine  .
 $ docker run -p 5000:5000 guestlist:alpine
 ```
-
- - via Heroku:
-
-Procfile added
-
-
- - on your own server/VPS (behind NGINX!):
->
+ - via Heroku (Procfile added):
+```
+web: gunicorn wsgi
+```
+ - or of course on your own server/VPS (behind NGINX!):
 
 
-#### Details 
+### Used Resources
+ - main style by sakura.css: https://github.com/oxalorg/sakura
+ - status indicators:  https://github.com/aus/led.css
+ - Python SVG icon: Icon made by https://www.flaticon.com/authors/freepik from www.flaticon.com
+
+ - CSS normalize utility: https://github.com/necolas/normalize.css
+
+
+#### Author 
 
  - Author: Erkan Demiralay
  - Contact: [erkan.dem@pm.me](mailto:erkan.dem@pm.me)
  - License:  [MIT](/LICENSE)
+
 
 **Disclaimer:**
 
