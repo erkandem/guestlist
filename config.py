@@ -8,6 +8,7 @@ guestoo = {
     'LOGIN_USER_NAME': os.getenv('LOGIN_USER_NAME'),
     'LOGIN_SECRET': os.getenv('LOGIN_SECRET'),
     'REFRESH_URI': os.getenv('REFRESH_URI'),
+    'DEPLOYMENT_URL': os.getenv('DEPLOYMENT_URL') or 'http://localhost:5000',
     'EVENT_ID': os.getenv('EVENT_ID'),
     'RELOGIN_HOURS': 10,
     'TOKEN_URL': "https://app.guestoo.de/auth/oauth/token",

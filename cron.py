@@ -8,7 +8,7 @@ from logmod import app_logger
 
 
 def job():
-    refresh_url = f'localhost:5000/{guestoo["REFRESH_URI"]}'
+    refresh_url = f'{guestoo["DEPLOYMENT_URL"]}/{guestoo["REFRESH_URI"]}'
     response = requests.get(refresh_url)
     app_logger.info(json.dumps({'msg': f'refresh executed. Status: {response.status_code}'}))
 
